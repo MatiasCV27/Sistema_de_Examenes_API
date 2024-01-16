@@ -24,7 +24,11 @@ public class UsuarioServiceImpl implements UsuarioService {
         if (usuarioLocal != null) {
             System.out.println("El usuario ya existe");
             throw new Exception("El usuario ya esta presente");
+        } else {
+            for (UsuarioRol usuarioRol: usuarioRoles) rolRepository.save(usuarioRol.getRol());
+            usuario.getUsuarioRols().addAll(usuarioRoles);
+            usuarioLocal = usuarioRepository.save(usuario);
         }
-        return null;
+        return usuarioLocal;
     }
 }
