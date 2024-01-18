@@ -22,7 +22,7 @@ public class UsuarioController {
     public Usuario guardarUsuario(@RequestBody Usuario usuario) throws Exception {
         usuario.setPerfil("default.png");
 
-        Set<UsuarioRol> roles = new HashSet<>();
+        Set<UsuarioRol> usuarioRoles = new HashSet<>();
 
         Rol rol = new Rol();
         rol.setRolId(2L);
@@ -32,7 +32,8 @@ public class UsuarioController {
         usuarioRol.setUsuario(usuario);
         usuarioRol.setRol(rol);
 
-        return usuarioService.guardarUsuario(usuario, roles);
+        usuarioRoles.add(usuarioRol);
+        return usuarioService.guardarUsuario(usuario, usuarioRoles);
     }
 
     @GetMapping("/{username}")
