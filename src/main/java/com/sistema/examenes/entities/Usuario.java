@@ -96,10 +96,10 @@ public class Usuario implements UserDetails {
     }
 
     public Set<UsuarioRol> getUsuarioRols() {
-        return usuarioRols;
+        return usuarioRoles;
     }
     public void setUsuarioRols(Set<UsuarioRol> usuarioRols) {
-        this.usuarioRols = usuarioRols;
+        this.usuarioRoles = usuarioRols;
     }
 
     @Override
