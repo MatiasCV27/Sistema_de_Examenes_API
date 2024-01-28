@@ -2,7 +2,7 @@ package com.sistema.examenes.controller;
 
 import com.sistema.examenes.config.JwtUtil;
 import com.sistema.examenes.entities.JwtRequest;
-import com.sistema.examenes.entities.JwtRespone;
+import com.sistema.examenes.entities.JwtResponse;
 import com.sistema.examenes.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +37,7 @@ public class AuthenticationController {
         }
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(jwtRequest.getUsername());
         String token = this.jwtUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtRespone(token));
+        return ResponseEntity.ok(new JwtResponse(token));
     }
 
     private void autenticar(String username, String password) throws Exception {
