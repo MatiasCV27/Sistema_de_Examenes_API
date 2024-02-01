@@ -23,7 +23,7 @@ public class Usuario implements UserDetails {
     private String apellido;
     private String email;
     private String telefono;
-    private Boolean enabled = true;
+    private boolean enabled = true;
     private String perfil;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usuario")
@@ -32,7 +32,7 @@ public class Usuario implements UserDetails {
 
     public Usuario() {}
 
-    public Usuario(Long id, String username, String password, String nombre, String apellido, String email, String telefono, Boolean enabled, String perfil) {
+    public Usuario(Long id, String username, String password, String nombre, String apellido, String email, String telefono, boolean enabled, String perfil) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -47,6 +47,7 @@ public class Usuario implements UserDetails {
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -54,8 +55,33 @@ public class Usuario implements UserDetails {
     public String getUsername() {
         return username;
     }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        Set<Authority> autoridades = new HashSet<>();
+        this.usuarioRoles.forEach(usuarioRol -> {
+            autoridades.add(new Authority(usuarioRol.getRol().getNombre()));
+        });
+        return autoridades;
     }
 
     public String getPassword() {
@@ -93,10 +119,10 @@ public class Usuario implements UserDetails {
         this.telefono = telefono;
     }
 
-    public Boolean getEnabled() {
+    public boolean isEnabled() {
         return enabled;
     }
-    public void setEnabled(Boolean enabled) {
+    public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
@@ -107,39 +133,10 @@ public class Usuario implements UserDetails {
         this.perfil = perfil;
     }
 
-    public Set<UsuarioRol> getUsuarioRols() {
+    public Set<UsuarioRol> getUsuarioRoles() {
         return usuarioRoles;
     }
-    public void setUsuarioRols(Set<UsuarioRol> usuarioRols) {
-        this.usuarioRoles = usuarioRols;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<Authority> autoridades = new HashSet<>();
-        this.usuarioRoles.forEach(usuarioRol -> {
-            autoridades.add(new Authority(usuarioRol.getRol().getNombre()));
-        });
-        return autoridades;
+    public void setUsuarioRoles(Set<UsuarioRol> usuarioRoles) {
+        this.usuarioRoles = usuarioRoles;
     }
 }
