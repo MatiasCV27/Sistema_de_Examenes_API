@@ -2,6 +2,7 @@ package com.sistema.examenes.services;
 
 import com.sistema.examenes.entities.Usuario;
 import com.sistema.examenes.entities.UsuarioRol;
+import com.sistema.examenes.exception.UsuarioFoundException;
 import com.sistema.examenes.repositories.RolRepository;
 import com.sistema.examenes.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario usuarioLocal = usuarioRepository.findByUsername(usuario.getUsername());
         if (usuarioLocal != null) {
             System.out.println("El usuario ya existe");
-            throw new Exception("El usuario ya esta presente");
+            throw new UsuarioFoundException("El usuario ya esta presente");
         } else {
             for (UsuarioRol usuarioRol: usuarioRoles) rolRepository.save(usuarioRol.getRol());
             usuario.getUsuarioRoles().addAll(usuarioRoles);

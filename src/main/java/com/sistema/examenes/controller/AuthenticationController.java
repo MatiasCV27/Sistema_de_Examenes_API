@@ -4,6 +4,7 @@ import com.sistema.examenes.config.JwtUtil;
 import com.sistema.examenes.entities.JwtRequest;
 import com.sistema.examenes.entities.JwtResponse;
 import com.sistema.examenes.entities.Usuario;
+import com.sistema.examenes.exception.UsuarioNotFoundException;
 import com.sistema.examenes.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class AuthenticationController {
     public ResponseEntity<?> generarToken(@RequestBody JwtRequest jwtRequest) throws Exception {
         try {
             autenticar(jwtRequest.getUsername(), jwtRequest.getPassword());
-        } catch (Exception exception) {
+        } catch (UsuarioNotFoundException exception) {
             exception.printStackTrace();
             throw new Exception("Usuario no encontrado");
         }
