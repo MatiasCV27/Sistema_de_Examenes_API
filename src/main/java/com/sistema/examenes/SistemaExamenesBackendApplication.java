@@ -5,12 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
 public class SistemaExamenesBackendApplication implements CommandLineRunner {
 
 	@Autowired
 	public UsuarioService usuarioService;
+
+	@Autowired
+	public BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public static void main(String[] args) {
 		SpringApplication.run(SistemaExamenesBackendApplication.class, args);
@@ -22,7 +26,7 @@ public class SistemaExamenesBackendApplication implements CommandLineRunner {
 		usuario.setNombre("Matias");
 		usuario.setApellido("Criollo Vigo");
 		usuario.setUsername("Mackend");
-		usuario.setPassword("12345");
+		usuario.setPassword(bCryptPasswordEncoder.encode("12345"));
 		usuario.setEmail("mackend@gmail.com");
 		usuario.setTelefono("967354987");
 		usuario.setPerfil("foto.png");
