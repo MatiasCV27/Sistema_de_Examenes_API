@@ -1,10 +1,11 @@
-package com.sistema.examenes.services;
+package com.sistema.examenes.services.impl;
 
 import com.sistema.examenes.entities.Usuario;
 import com.sistema.examenes.entities.UsuarioRol;
 import com.sistema.examenes.exception.UsuarioFoundException;
 import com.sistema.examenes.repositories.RolRepository;
 import com.sistema.examenes.repositories.UsuarioRepository;
+import com.sistema.examenes.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

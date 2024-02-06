@@ -1,4 +1,4 @@
-package com.sistema.examenes.services;
+package com.sistema.examenes.services.impl;
 
 import com.sistema.examenes.entities.Usuario;
 import com.sistema.examenes.repositories.UsuarioRepository;

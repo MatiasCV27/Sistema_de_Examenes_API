@@ -5,7 +5,7 @@ import com.sistema.examenes.entities.JwtRequest;
 import com.sistema.examenes.entities.JwtResponse;
 import com.sistema.examenes.entities.Usuario;
 import com.sistema.examenes.exception.UsuarioNotFoundException;
-import com.sistema.examenes.services.UserDetailsServiceImpl;
+import com.sistema.examenes.services.impl.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
