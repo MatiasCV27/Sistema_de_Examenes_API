@@ -1,5 +1,6 @@
 package com.sistema.examenes.services.impl;
 
+import com.sistema.examenes.entities.Categoria;
 import com.sistema.examenes.entities.Examen;
 import com.sistema.examenes.repositories.ExamenRepository;
 import com.sistema.examenes.services.ExamenService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -40,5 +42,10 @@ public class ExamenServiceImpl implements ExamenService {
         Examen examen = new Examen();
         examen.setExamenId(examenId);
         examenRepository.delete(examen);
+    }
+
+    @Override
+    public List<Examen> listarExamenesDeUnaCategoria(Categoria categoria) {
+        return this.examenRepository.findByCategoria(categoria);
     }
 }
