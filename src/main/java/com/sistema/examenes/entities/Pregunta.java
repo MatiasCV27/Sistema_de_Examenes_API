@@ -17,6 +17,7 @@ public class Pregunta {
     private String opcion2;
     private String opcion3;
     private String opcion4;
+    @Transient
     private String respuestaDada;
 
     @ManyToOne(fetch = FetchType.EAGER)
