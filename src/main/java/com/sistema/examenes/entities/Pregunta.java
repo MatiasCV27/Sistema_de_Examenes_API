@@ -17,6 +17,7 @@ public class Pregunta {
     private String opcion2;
     private String opcion3;
     private String opcion4;
+    private String respuesta;
     @Transient
     private String respuestaDada;
 
@@ -72,6 +73,13 @@ public class Pregunta {
     }
     public void setOpcion4(String opcion4) {
         this.opcion4 = opcion4;
+    }
+
+    public String getRespuesta() {
+        return respuesta;
+    }
+    public void setRespuesta(String respuesta) {
+        this.respuesta = respuesta;
     }
 
     public String getRespuestaDada() {
