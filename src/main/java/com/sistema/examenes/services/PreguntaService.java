@@ -19,4 +19,6 @@ public interface PreguntaService {
 
     void eliminarPregunta(Long preguntaId);
 
+    Pregunta listarPregunta(Long preguntaId);
+
 }
